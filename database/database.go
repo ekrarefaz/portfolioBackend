@@ -11,7 +11,7 @@ import (
 
 var DB *gorm.DB
 
-func ConnectDatabase() {
+func ConnectDatabase() *gorm.DB {
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require",
 		os.Getenv("DB_HOST"),
 		os.Getenv("DB_USER"),
@@ -31,5 +31,5 @@ func ConnectDatabase() {
 		log.Fatalf("failed to migrate database %v", err)
 	}
 
-	DB = db
+	return db
 }
