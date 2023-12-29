@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/ekrarefaz/portfolioBackend/controllers"
 	"github.com/ekrarefaz/portfolioBackend/database"
+	"github.com/ekrarefaz/portfolioBackend/repository"
 	"github.com/ekrarefaz/portfolioBackend/routes"
 	"github.com/ekrarefaz/portfolioBackend/services"
 	"github.com/joho/godotenv"
@@ -21,7 +22,7 @@ func main() {
 	db := database.ConnectDatabase()
 
 	// Initialize the GORM repository
-	gormRepo := &services.ProjectService{DB: db}
+	gormRepo := repository.NewGormProjectRepository(db)
 
 	// Init project services with the GORM repository
 	projectService := services.NewProjectService(gormRepo)
