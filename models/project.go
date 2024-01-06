@@ -11,5 +11,5 @@ type Project struct {
 	ProjectURL  string   `gorm:"type:varchar(100)"`
 	GitHubURL   string   `gorm:"type:varchar(100)"`
 	ImageURL    string   `gorm:"type:varchar(100)"`
-	Badges      []string `gorm:"type:text" json:"-"`
+	Badges      []string `gorm:"type:json" json:"badges"`
 }
