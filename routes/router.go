@@ -10,6 +10,8 @@ import (
 
 func RouterInit(
 	projectController *controllers.ProjectController,
+	aboutController *controllers.AboutController,
+
 ) *gin.Engine {
 
 	// Use default gin router
@@ -36,5 +38,9 @@ func RouterInit(
 	router.GET("/projects/:id", projectController.GetProjectByIDHandler)
 	router.DELETE("/projects/:id", projectController.DeleteProjectByIDHandler) // Corrected to DELETE
 
+	// About Page Route
+	router.GET("/about", aboutController.GetAboutHandler)
+	router.POST("/about", aboutController.CreateAboutHandler)
+	router.DELETE("/about/:id", aboutController.DeleteAboutHandler)
 	return router
 }

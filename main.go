@@ -21,17 +21,20 @@ func main() {
 	// Instantiate Database Connection
 	db := database.ConnectDatabase()
 
-	// Initialize the GORM repository
-	gormRepo := repository.NewGormProjectRepository(db)
+	// Initialize the relevant repository
+	projectRepo := repository.NewGormProjectRepository(db)
+	aboutRepo := repository.NewGormAboutRepository(db)
 
-	// Init project services with the GORM repository
-	projectService := services.NewProjectService(gormRepo)
+	// Init services with the relevant repository
+	projectService := services.NewProjectService(projectRepo)
+	aboutService := services.NewAboutService(aboutRepo)
 
-	// Init project controller with the service
+	// Init controllers with the relevant service
 	projectController := controllers.NewProjectController(projectService)
+	aboutController := controllers.NewAboutController(aboutService)
 
 	// Init Router with the controller
-	router := routes.RouterInit(projectController)
+	router := routes.RouterInit(projectController, aboutController)
 
 	// Start the server
 	err = router.Run(":8888")

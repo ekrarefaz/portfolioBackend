@@ -3,12 +3,10 @@ package services
 import (
 	"github.com/ekrarefaz/portfolioBackend/interfaces"
 	"github.com/ekrarefaz/portfolioBackend/models"
-	"gorm.io/gorm"
 )
 
 type ProjectService struct {
 	repo interfaces.IProjectRepository
-	DB   *gorm.DB
 }
 
 // NewProjectService creates a new Project Service Object
